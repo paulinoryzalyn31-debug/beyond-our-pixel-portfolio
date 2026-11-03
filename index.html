@@ -1,0 +1,1555 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Three students, three stories, one digital journey.">
+<title>Beyond the Classroom | Three Student Portfolios</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+
+:root {
+  --ink: #30262b;
+  --muted: #76666e;
+  --paper: #fffaf9;
+  --pink: #c76b8b;
+  --pink-dark: #93415f;
+  --beige: #a58b6b;
+  --beige-dark: #554638;
+  --jude: #7564b6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', Arial, sans-serif;
+  line-height: 1.7;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, .btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 30px;
+  padding: 12px 22px;
+  background: var(--pink-dark);
+  color: white;
+  font: 600 13px 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: .25s;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.06);
+  box-shadow: 0 8px 18px #00000012;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 7%;
+  background: #fff;
+  box-shadow: 0 3px 18px #3c1e2810;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--pink-dark);
+}
+
+.topbar span {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+.intro {
+  text-align: center;
+  padding: 70px 20px 30px;
+  background:
+    radial-gradient(circle at 15% 20%, #ffe5ee 0, transparent 28%),
+    radial-gradient(circle at 85% 10%, #f4e7d7 0, transparent 25%),
+    var(--paper);
+}
+
+.eyebrow, .tag {
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--pink-dark);
+  text-transform: uppercase;
+}
+
+.intro h1, .hero h1 {
+  font: 300 clamp(38px, 6vw, 68px)/1.12 'Playfair Display', Georgia, serif;
+  margin: 8px 0;
+}
+
+h1 em, h2 em {
+  color: var(--pink);
+  font-weight: 500;
+}
+
+.intro > p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+.search-wrap {
+  max-width: 480px;
+  margin: 25px auto 10px;
+  padding: 0 10px;
+}
+
+.search-wrap input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 1px solid #eadde2;
+  border-radius: 30px;
+  outline: none;
+  background: white;
+  font: 14px 'DM Sans', sans-serif;
+  box-shadow: 0 8px 25px #3c1e280b;
+}
+
+.search-message {
+  font-size: 10px;
+  color: var(--muted);
+  min-height: 20px;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  padding: 15px 7% 65px;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.choice {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px #39232b0d;
+  border: 1px solid #f2e6e9;
+  transition: transform .3s, box-shadow .3s;
+  animation: cardIn .8s both;
+}
+
+.choice:nth-child(2) {
+  animation-delay: .15s;
+}
+
+.choice:nth-child(3) {
+  animation-delay: .5s;
+}
+
+.choice:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 40px #39232b16;
+}
+
+/* Pictures are placed inside the existing colored card areas */
+.art {
+  height: 190px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.art img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  animation: photoFloat 3s ease-in-out infinite;
+  transition: transform .4s;
+}
+
+.choice:hover .art img {
+  transform: scale(1.04);
+}
+
+.art small {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 12px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #ffffffd9;
+  font: 700 9px 'DM Sans', sans-serif;
+  letter-spacing: 2px;
+}
+
+.pink-art {
+  background: linear-gradient(135deg, #ffeaf1, #f6cbd9);
+  color: #a74e70;
+}
+
+.beige-art {
+  background: linear-gradient(135deg, #eee3d1, #d5c2a5);
+  color: #6c5844;
+}
+
+.colorful-art {
+  background: linear-gradient(135deg, #e8e0ff, #d8f4ed, #ffe5ed);
+  color: #7662b7;
+}
+
+.choice-content {
+  padding: 22px;
+}
+
+.tag {
+  font-size: 8px;
+  color: var(--muted);
+}
+
+.choice h2 {
+  font: 500 22px 'Playfair Display', Georgia, serif;
+  line-height: 1.25;
+  margin: 10px 0;
+}
+
+.choice-content > p:not(.tag) {
+  font-size: 13px;
+  color: var(--muted);
+  min-height: 38px;
+}
+
+.portfolio {
+  min-height: 99vh;
+  animation: fadeIn .45s ease;
+}
+
+.portfolio nav {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px 5%;
+  background: #ffffffed;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #0000000a;
+}
+
+.portfolio nav .navlinks {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.portfolio nav a {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.portfolio nav .back {
+  font-size: 10px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.portfolio nav a.active {
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 4px;
+}
+
+.page-section {
+  animation: sectionIn .45s ease;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 45px;
+  padding: 65px 10%;
+  min-height: 540px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+}
+
+.hero h3 {
+  margin: 0 0 10px;
+}
+
+.hero p {
+  max-width: 420px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.hero .btn {
+  margin: 12px 8px 0 0;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 1px solid currentColor;
+  color: var(--pink-dark);
+}
+
+.note {
+  font-size: 11px !important;
+  margin-top: 22px;
+}
+
+.pink-hero {
+  background: linear-gradient(120deg, #fff4f7, #ffe8ef);
+}
+
+.portrait {
+  position: relative;
+  min-height: 390px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.portrait img {
+  width: min(300px, 80%);
+  height: 340px;
+  object-fit: cover;
+  border-radius: 48% 48% 12px 12px;
+  border: 9px solid white;
+  box-shadow: 0 15px 40px #8e45621c;
+  background: #f6d5e0;
+  animation: photoFloat 4s ease-in-out infinite;
+}
+
+.photo-caption {
+  background: white;
+  padding: 12px 25px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px #8e456214;
+  margin-top: -18px;
+  position: relative;
+  font-size: 12px;
+}
+
+.flower {
+  position: absolute;
+  top: 22px;
+  right: 10%;
+  font-size: 55px;
+  color: #d58ba5;
+  animation: spinSlow 12s linear infinite;
+}
+
+.section {
+  padding: 65px 9%;#42445A
+  text-align: center;
+}
+
+.section h2, .contact h2 {
+  font: 500 clamp(32px, 4vw, 45px) 'Playfair Display', Georgia, serif;
+  margin: 8px 0 25px;
+}
+
+.about-card {
+  max-width: 850px;
+  margin: 25px auto;
+  padding: 28px 32px;
+  text-align: left;
+  background: white;
+  border: 1px solid #f1e3e8;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px #38222a08;
+}
+
+.about-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.about-card h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 1050px;
+  margin: 28px auto 0;
+}
+
+.three article {
+  padding: 24px 18px;
+  border-radius: 15px;
+  background: white;
+  border: 1px solid #f0e4e8;
+  transition: transform .3s, box-shadow .3s;
+  animation: cardIn .7s both;
+}
+
+.three article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px #0000000c;
+}
+
+.three article span {
+  font-size: 28px;
+  color: var(--pink);
+}
+
+.three h3 {
+  font: 600 18px 'Playfair Display', Georgia, serif;
+  margin: 10px 0;
+}
+
+.three p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.soft {
+  background: #fff3f7;
+}
+
+.contact {
+  text-align: center;
+  padding: 70px 20px;
+  background: #fce7ee;
+}
+
+.contact > p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+.contact .btn {
+  margin: 8px;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 25px auto;
+  max-width: 700px;
+}
+
+.contact-links a {
+  display: inline-block;
+  padding: 11px 16px;
+  border-radius: 25px;
+  background: #fff;
+  font-size: 13px;
+  border: 1px solid #eadde2;
+  transition: .25s;
+}
+
+.contact-links a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px #00000010;
+}
+
+.back-button {
+  margin-top: 25px;
+}
+
+footer {
+  text-align: center;
+  padding: 22px 15px;
+  color: var(--muted);
+  font-size: 11px;
+  background: #fff;
+}
+
+.alwina {
+  --accent: var(--pink-dark);
+  --accent-light: #fff2f6;
+}
+
+.pink-contact {
+  background: linear-gradient(135deg, #fff0f5, #f8dce6);
+}
+
+.ryza {
+  --accent: var(--beige-dark);
+  --accent-light: #f7f1e8;
+  background: #fcfaf6;
+}
+
+.ryza .eyebrow {
+  color: var(--beige);
+}
+
+.ryza .section h2 em, .ryza .hero h1 em {
+  color: var(--beige);
+}
+
+.ryza-nav {
+  background: #fbf8f2 !important;
+}
+
+.ryza-nav .back {
+  color: var(--beige-dark);
+}
+
+.beige-hero {
+  background: linear-gradient(115deg, #f7f1e7, #e9dfcf);
+  grid-template-columns: 1fr 1fr;
+}
+
+.beige-btn {
+  background: var(--beige-dark);
+}
+
+.initial-photo {
+  height: 350px;
+  max-width: 330px;
+  width: 100%;
+  justify-self: center;
+  background: linear-gradient(145deg, #e1d1b8, #b8a184);
+  border: 12px solid #fffaf3;
+  box-shadow: 12px 12px 0 #d9c8ae;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #594735;
+  font: 100px 'Playfair Display', Georgia, serif;
+  overflow: hidden;
+  position: relative;
+  animation: photoFloat 4s ease-in-out infinite;
+}
+
+.initial-photo img, .jude-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+.initial-photo small, .jude-photo small {
+  display: block;
+  font: 700 10px 'DM Sans', sans-serif;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.initial-photo small {
+  background: #fffaf3d9;
+  padding: 8px;
+  text-align: center;
+}
+
+.beige-soft {
+  background: #f2eadf;
+}
+
+.beige-soft .three article {
+  background: #fcfaf6;
+  border-color: #e8ddcd;
+}
+
+.beige-soft .three article span {
+  color: var(--beige);
+}
+
+.beige-contact {
+  background: #eee3d3;
+}
+
+.judelyn {
+  --accent: var(--jude);
+  background: #fcfbff;
+}
+
+.judelyn .eyebrow,
+.judelyn .section h2 em,
+.judelyn .hero h1 em {
+  color: var(--jude);
+}
+
+.jude-nav {
+  background: #fbfaff !important;
+}
+
+.jude-nav .back {
+  color: var(--jude);
+}
+
+.jude-hero {
+  background: linear-gradient(120deg, #f0edff, #e4f8f2, #fff0f5);
+}
+
+.jude-pill {
+  display: inline-block;
+  padding: 7px 13px;
+  border-radius: 30px;
+  background: #fff;
+  color: var(--jude);
+  font-size: 10px !important;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.jude-btn {
+  background: var(--jude);
+}
+
+.jude-photo {
+  height: 350px;
+  max-width: 330px;
+  width: 100%;
+  justify-self: center;
+  border-radius: 48% 48% 20px 20px;
+  background: linear-gradient(145deg, #e7dfff, #c7f0e6, #ffe0eb);
+  border: 10px solid white;
+  box-shadow: 0 16px 35px #6255a21b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #6555a4;
+  font: 100px 'Playfair Display', Georgia, serif;
+  overflow: hidden;
+  position: relative;
+  animation: photoFloat 4s ease-in-out infinite;
+}
+
+.jude-photo small {
+  background: #ffffffd9;
+  padding: 8px;
+  text-align: center;
+}
+
+.jude-soft {
+  background: #f1efff;
+}
+
+.jude-soft .three article {
+  background: #fff;
+  border-color: #e8e3ff;
+}
+
+.jude-soft .three article span {
+  color: var(--jude);
+}
+
+.jude-contact {
+  background: linear-gradient(120deg, #eeeaff, #e4f8f2, #fff0f5);
+}
+
+.portfolio footer a {
+  text-decoration: underline;
+}
+
+@keyframes photoFloat {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sectionIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 850px) {
+  .choices {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 45px 7%;
+    gap: 18px;
+  }
+
+  .hero p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .portrait {
+    min-height: 340px;
+  }
+
+  .three {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio nav {
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+
+  .portfolio nav .navlinks {
+    gap: 10px;
+  }
+
+  .section {
+    padding: 48px 6%;
+  }
+
+  .initial-photo, .jude-photo {
+    height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+  }
+
+  .intro {
+    padding-top: 45px;
+  }
+
+  .choice-content {
+    padding: 18px;
+  }
+
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .portfolio nav {
+    padding: 13px 4%;
+  }
+
+  .portfolio nav .navlinks {
+    gap: 9px;
+  }
+
+  .portfolio nav a {
+    font-size: 10px;
+  }
+
+  .about-card {
+    padding: 20px;
+  }
+
+  .portrait img {
+    height: 290px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+
+
+/* ===== DREAMY HOMEPAGE ANIMATION ===== */
+
+#home {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+#home .dreamy-decor {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* FALLING ROSE PETALS */
+#home .rose-petal {
+  position: absolute;
+  top: -50px;
+  display: block;
+  font-size: 19px;
+  opacity: .85;
+  animation: petalFall 9s linear infinite;
+}
+
+#home .petal-1 {
+  left: 8%;
+  animation-delay: 0s;
+}
+
+#home .petal-2 {
+  left: 22%;
+  font-size: 15px;
+  animation-delay: 3s;
+}
+
+#home .petal-3 {
+  left: 38%;
+  animation-delay: 5s;
+}
+
+#home .petal-4 {
+  left: 52%;
+  font-size: 16px;
+  animation-delay: 1.5s;
+}
+
+#home .petal-5 {
+  left: 67%;
+  animation-delay: 4s;
+}
+
+#home .petal-6 {
+  left: 79%;
+  font-size: 16px;
+  animation-delay: 2s;
+}
+
+#home .petal-7 {
+  left: 91%;
+  animation-delay: 6s;
+}
+
+#home .petal-8 {
+  left: 46%;
+  font-size: 14px;
+  animation-delay: 7s;
+}
+
+@keyframes petalFall {
+  0% {
+    top: -50px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: .85;
+  }
+  50% {
+    transform: translateX(35px) rotate(180deg);
+  }
+  90% {
+    opacity: .8;
+  }
+  100% {
+    top: 105%;
+    transform: translateX(-25px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* FLOATING CLOUDS */
+#home .dream-cloud {
+  position: absolute;
+  color: #fff;
+  font-size: 36px;
+  opacity: .65;
+  text-shadow: 0 2px 10px #f4c6e2;
+  animation: cloudFloat 8s ease-in-out infinite;
+}
+
+#home .cloud-1 {
+  top: 12%;
+  left: 12%;
+}
+
+#home .cloud-2 {
+  top: 28%;
+  right: 12%;
+  font-size: 28px;
+  animation-delay: -3s;
+}
+
+#home .cloud-3 {
+  top: 62%;
+  left: 30%;
+  font-size: 24px;
+  animation-delay: -5s;
+}
+
+@keyframes cloudFloat {
+  0%, 100% {
+    transform: translateX(-10px) translateY(0);
+  }
+  50% {
+    transform: translateX(15px) translateY(-8px);
+  }
+}
+
+/* TWINKLING STARS */
+#home .dream-star {
+  position: absolute;
+  color: #e8a0cf;
+  text-shadow: 0 0 8px #ffc7e9;
+  animation: starTwinkle 2s ease-in-out infinite;
+}
+
+#home .star-1 {
+  top: 10%;
+  left: 45%;
+  font-size: 20px;
+}
+
+#home .star-2 {
+  top: 24%;
+  right: 25%;
+  font-size: 24px;
+  animation-delay: .5s;
+}
+
+#home .star-3 {
+  top: 42%;
+  left: 12%;
+  font-size: 17px;
+  animation-delay: 1s;
+}
+
+#home .star-4 {
+  top: 55%;
+  right: 10%;
+  font-size: 20px;
+  animation-delay: .8s;
+}
+
+#home .star-5 {
+  top: 72%;
+  left: 72%;
+  font-size: 18px;
+  animation-delay: 1.3s;
+}
+
+#home .star-6 {
+  top: 80%;
+  left: 25%;
+  font-size: 22px;
+  animation-delay: .3s;
+}
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: .3;
+    transform: scale(.7) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25) rotate(25deg);
+  }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 480px) {
+  #home .rose-petal {
+    font-size: 15px;
+  }
+
+  #home .dream-cloud {
+    font-size: 25px;
+  }
+
+  #home .cloud-2 {
+    font-size: 21px;
+  }
+
+  #home .dream-star {
+    font-size: 15px;
+  }
+}
+
+/* REDUCE MOTION IF REQUESTED BY DEVICE */
+@media (prefers-reduced-motion: reduce) {
+  #home .dreamy-decor * {
+    animation: none !important;
+  }
+}
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  #home .dreamy-decor * {
+    animation: none !important;
+  }
+}
+
+/* HOMEPAGE TITLE ADJUSTMENTS */
+#home .intro {
+    padding-top: 25px !important;
+    padding-bottom: 10px !important;
+    gap: 8px !important;
+}
+
+#home .intro .eyebrow {
+    margin-top: 0 !important;
+    margin-bottom: 8px !important;
+    font-size: 9px !important;
+}
+
+#home .intro h1 {
+    font-size: clamp(10px, 5vw, 30px) !important;
+    line-height: 1!important;
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+}
+
+#home .intro p {
+    font-size: 12px !important;
+    margin-top: 6px !important;
+    margin-bottom: 10px !important;
+}
+
+#home .search-wrap {
+    margin-top: 8px !important;
+}
+
+#home .choices,
+#home .portfolio-grid,
+#home .portfolio-choices {
+    margin-top: 10px !important;
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <a class="logo" href="#" onclick="showHome();return false;">✿ Meet the Dreamers</a>
+</header>
+<main id="home" class="home">
+  <section class="intro">
+<!-- DREAMY FALLING PETALS, CLOUDS & STARS -->
+<div class="dreamy-decor" aria-hidden="true">
+  <!-- FALLING PINK ROSE PETALS -->
+  <span class="rose-petal petal-1">🌸</span>
+  <span class="rose-petal petal-2">🌹</span>
+  <span class="rose-petal petal-3">🌸</span>
+  <span class="rose-petal petal-4">🌷</span>
+  <span class="rose-petal petal-5">🌸</span>
+  <span class="rose-petal petal-6">🌹</span>
+  <span class="rose-petal petal-7">🌸</span>
+  <span class="rose-petal petal-8">🌷</span>
+
+  <!-- FLOATING CLOUDS -->
+  <span class="dream-cloud cloud-1">☁</span>
+  <span class="dream-cloud cloud-2">☁</span>
+  <span class="dream-cloud cloud-3">☁</span>
+
+  <!-- TWINKLING STARS -->
+  <span class="dream-star star-1">✦</span>
+  <span class="dream-star star-2">✧</span>
+  <span class="dream-star star-3">✦</span>
+  <span class="dream-star star-4">✧</span>
+  <span class="dream-star star-5">✦</span>
+  <span class="dream-star star-6">✧</span>
+
+</div>
+    <p class="eyebrow">WELCOME TO OUR WEBSITE</p>
+    <h1>Beyond Our Pixels:<br><em
+      <img src="alwina.JPG" alt="Our Group Picture" class="home-image">
+
+</div>
+    <p>Discover our skills, interests, creativity, and journeys as students.</p>
+
+    <div class="search-wrap">
+      <input
+        type="search"
+        id="portfolioSearch"
+        placeholder="🔎 Search Alwina, Ryza, or Judelyn..."
+        oninput="filterPortfolios()"
+        aria-label="Search student portfolios">
+      <p class="search-message" id="searchMessage" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="choices" id="portfolioCards">
+
+    <article class="choice" data-search="alwina lyka basañez pink elegant feminine">
+      <div class="art pink-art">
+        <img src="alwina2.JPG" alt="Alwina Lyka">
+      </div>
+      <div class="choice-content">
+        <h2> Alwina Basañez.</h2>
+        <button onclick="openPortfolio('alwina')">View Portfolio ↗</button>
+      </div>
+    </article>
+
+    <article class="choice" data-search="ryza lyn paulino beige minimal timeless">
+      <div class="art beige-art">
+        <img src="ryza2.JPG" alt="Ryza Lyn">
+      </div>
+      <div class="choice-content">
+        <h2>Ryza Lyn Paulino</h2>
+        <button onclick="openPortfolio('ryza')">View Portfolio ↗</button>
+      </div>
+    </article>
+
+    <article class="choice" data-search="judelyn sabado colorful creative pastel">
+      <div class="art colorful-art">
+        <img src="jude2.JPG" alt="Judelyn">
+      </div>
+      <div class="choice-content">
+        <h2>Judelyn R. Sabado</h2>
+        <button onclick="openPortfolio('judelyn')">View Portfolio ↗</button>
+      </div>
+    </article>
+
+  </section>
+
+  <footer>Made with ♡ by three students · 2026</footer>
+</main>
+
+<!-- ALWINA PORTFOLIO -->
+<div id="alwina" class="portfolio alwina" hidden>
+
+  <nav class="pink-nav">
+    <a href="#" class="back" onclick="showHome();return false;">✿ Exit </a>
+    <div class="navlinks">
+      <a href="#" onclick="showSection('alwina','a-home',this);return false;">Home</a>
+      <a href="#" onclick="showSection('alwina','a-about',this);return false;">About</a>
+      <a href="#" onclick="showSection('alwina','a-skills',this);return false;">Skills</a>
+      <a href="#" onclick="showSection('alwina','a-projects',this);return false;">Projects</a>
+      <a href="#" onclick="showSection('alwina','a-features',this);return false;">Features & Works</a>
+      <a href="#" onclick="showSection('alwina','a-education',this);return false;">Education</a>
+      <a href="#" onclick="showSection('alwina','a-contact',this);return false;">Contact</a>
+    </div>
+  </nav>
+
+  <section id="a-home" class="page-section hero pink-hero">
+    <div class="hero-text">
+      <p class="eyebrow">WELCOME TO MY LITTLE CORNER</p>
+      <h1>Hello, I'm<br><em>Alwina Lyka</em></h1>
+      <h3>First-Year IT Student</h3>
+      <p>I'm a BSIT student who enjoys learning new things, exploring technology, and improving my skills. I also love dancing and singing.</p>
+      <button onclick="showSection('alwina','a-projects')">Explore My Work ↗</button>
+      <button class="btn outline" onclick="showSection('alwina','a-contact')">Contact Me ♡</button>
+      <p class="note">♡ Learning, creating, and growing</p>
+    </div>
+
+    <div class="portrait">
+      <img src="alwina.JPG" alt="Alwina Lyka's portrait">
+      <div class="photo-caption">Nice to meet you!<br><strong>Thanks for visiting ♡</strong></div>
+      <span class="flower">✿</span>
+    </div>
+  </section>
+
+  <section id="a-about" class="page-section section" hidden>
+    <p class="eyebrow">GET TO KNOW ME</p>
+    <h2>A Little About <em>Me</em></h2>
+    <div class="about-card">
+      <h3>Hi there! ♡</h3>
+      <p>I'm Alwina Lyka D. Basañez, a first-year Bachelor of Science in Information Technology student at the University of Eastern Pangasinan.</p>
+      <p>I enjoy learning about technology and discovering how websites and digital projects are created. I am still growing as an IT student and look forward to learning more every day.</p>
+      <p>Outside school, I love dancing, singing, and spending time learning new things.</p>
+    </div>
+    <div class="three">
+      <article><span>🎓</span><h3>My Studies</h3><p>Information Technology</p></article>
+      <article><span>💻</span><h3>My Interests</h3><p>Technology and Web Design</p></article>
+      <article><span>🌷</span><h3>My Personality</h3><p>Curious and Creative</p></article>
+    </div>
+  </section>
+
+  <section id="a-skills" class="page-section section soft" hidden>
+    <p class="eyebrow">WHAT I'M DEVELOPING</p>
+    <h2>My <em>Skills</em></h2>
+    <p>These are skills I am practicing and improving as a first-year IT student.</p>
+    <div class="three">
+      <article><span>⌨</span><h3>Computer Skills</h3><p>Learning computer applications and digital tools for school activities.</p></article>
+      <article><span>&lt;/&gt;</span><h3>HTML & CSS</h3><p>Practicing website structure, page layouts, colors, and visual design.</p></article>
+      <article><span>✧</span><h3>Creativity</h3><p>Exploring ideas and finding creative ways to present information.</p></article>
+      <article><span>🤝</span><h3>Teamwork</h3><p>Sharing ideas and cooperating with classmates on group tasks.</p></article>
+      <article><span>📚</span><h3>Self-Learning</h3><p>Learning new concepts through practice and research.</p></article>
+      <article><span>💬</span><h3>Communication</h3><p>Practicing how to share ideas clearly and respectfully.</p></article>
+    </div>
+  </section>
+
+  <section id="a-projects" class="page-section section" hidden>
+    <p class="eyebrow">MY LEARNING JOURNEY</p>
+    <h2>My <em>Projects & Works</em></h2>
+    <div class="three">
+      <article><span>✿</span><h3>Personal Portfolio</h3><p>A website introducing me, my interests, and my learning journey.</p></article>
+      <article><span>&lt;/&gt;</span><h3>Coding Practice</h3><p>Beginner programming exercises and simple coding activities.</p></article>
+      <article><span>✎</span><h3>School Activities</h3><p>Academic tasks, presentations, and collaborative learning outputs.</p></article>
+    </div>
+  </section>
+
+  <section id="a-features" class="page-section section soft" hidden>
+    <p class="eyebrow">ABOUT THIS WEBSITE</p>
+    <h2>Features <em>&amp; Works</em></h2>
+    <div class="three">
+      <article><span>📱</span><h3>Responsive Design</h3><p>The layout adjusts to phones, tablets, and larger screens.</p></article>
+      <article><span>🎨</span><h3>Elegant Pink Theme</h3><p>Soft pink colors, clean cards, and readable typography.</p></article>
+      <article><span>✨</span><h3>CSS Animations</h3><p>Photos and cards use gentle movement and hover effects.</p></article>
+      <article><span>🧭</span><h3>Section Navigation</h3><p>Each navigation button displays its selected section only.</p></article>
+      <article><span>🔎</span><h3>Home Search</h3><p>Visitors can search for any of the three student portfolios.</p></article>
+      <article><span>🔗</span><h3>Contact Links</h3><p>Visitors can open my email, Facebook, Messenger, and phone links.</p></article>
+    </div>
+  </section>
+
+  <section id="a-education" class="page-section section" hidden>
+    <p class="eyebrow">MY ACADEMIC BACKGROUND</p>
+    <h2>My <em>Education</em></h2>
+    <div class="about-card">
+      <h3>University of Eastern Pangasinan</h3>
+      <p>Bachelor of Science in Information Technology (BSIT)</p>
+      <p>First-Year College Student</p>
+    </div>
+  </section>
+
+  <section id="a-contact" class="page-section contact pink-contact" hidden>
+    <p class="eyebrow">LET'S CONNECT</p>
+    <h2>Thank you for <em>visiting!</em></h2>
+    <p>Feel free to reach out through any of my contact links.</p>
+    <div class="contact-links">
+      <a href="https://www.facebook.com/share/19e79zFJPB/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+      <a href="https://m.me/alwina.basanez" target="_blank" rel="noopener noreferrer">💬 Messenger</a>
+      <a href="mailto:alwinabasanez015@gmail.com">✉ Gmail</a>
+      <a href="tel:09516715043">📱 09516715043</a>
+    </div>
+    <p>alwinabasanez015@gmail.com</p>
+  </section>
+
+  <footer>Designed with care by Alwina Lyka D. Basañez · 2026</footer>
+</div>
+
+<!-- RYZA PORTFOLIO -->
+<div id="ryza" class="portfolio ryza" hidden>
+  <nav class="ryza-nav">
+    <a class="back" href="#" onclick="showHome();return false;">← ALL PORTFOLIOS</a>
+    <strong>RYZA LYN PAULINO</strong>
+    <div class="navlinks">
+      <a href="#" onclick="showSection('ryza','r-home',this);return false;">Home</a>
+      <a href="#" onclick="showSection('ryza','r-about',this);return false;">About</a>
+      <a href="#" onclick="showSection('ryza','r-skills',this);return false;">Skills</a>
+      <a href="#" onclick="showSection('ryza','r-projects',this);return false;">Projects</a>
+      <a href="#" onclick="showSection('ryza','r-features',this);return false;">Features & Works</a>
+      <a href="#" onclick="showSection('ryza','r-education',this);return false;">Education</a>
+      <a href="#" onclick="showSection('ryza','r-contact',this);return false;">Contact</a>
+    </div>
+  </nav>
+
+  <section id="r-home" class="page-section hero beige-hero">
+    <div>
+      <p class="eyebrow">PERSONAL PORTFOLIO · 2026</p>
+      <h1>Hello,<br>I'm <em>Ryza Lyn.</em></h1>
+      <p>A college student learning, growing, and discovering new opportunities one step at a time.</p>
+      <button class="beige-btn" onclick="showSection('ryza','r-projects')">Explore My Work ↗</button>
+      <p class="note">Simple ideas. Steady progress. Meaningful goals.</p>
+    </div>
+    <div class="initial-photo">
+      <img src="ryza.JPG"  >
+    </div>
+  </section>
+
+  <section id="r-about" class="page-section section" hidden>
+    <p class="eyebrow">01 — INTRODUCTION</p>
+    <h2>A little <em>about me.</em></h2>
+    <div class="about-card">
+      <p>Hi! I'm Ryza Lyn Paulino. I am a student working toward my goals and building my knowledge through school, practice, and new experiences. I believe learning every day can help me become more confident and capable.</p>
+    </div>
+    <div class="three">
+      <article><h3>My Name</h3><p>Ryza Lyn Paulino</p></article>
+      <article><h3>My Course</h3><p>BSIT Student</p></article>
+      <article><h3>My Focus</h3><p>Learning and Growth</p></article>
+    </div>
+  </section>
+
+  <section id="r-skills" class="page-section section soft beige-soft" hidden>
+    <p class="eyebrow">02 — WHAT I'M DEVELOPING</p>
+    <h2>Skills & <em>Interests</em></h2>
+    <div class="three">
+      <article><span>💻</span><h3>Computer Skills</h3><p>Learning digital tools for school activities and assignments.</p></article>
+      <article><span>🤝</span><h3>Teamwork</h3><p>Sharing ideas and working with classmates toward common goals.</p></article>
+      <article><span>✧</span><h3>Creativity</h3><p>Exploring ideas and trying different ways to solve tasks.</p></article>
+      <article><span>📚</span><h3>Learning</h3><p>Building knowledge through practice and school activities.</p></article>
+      <article><span>💬</span><h3>Communication</h3><p>Practicing clear and respectful communication.</p></article>
+      <article><span>🎯</span><h3>Goal Setting</h3><p>Working step by step toward personal and academic goals.</p></article>
+    </div>
+  </section>
+
+  <section id="r-projects" class="page-section section" hidden>
+    <p class="eyebrow">03 — MY LEARNING JOURNEY</p>
+    <h2>Projects & <em>Works</em></h2>
+    <div class="three">
+      <article><span>🖥️</span><h3>Student Portfolio</h3><p>A personal webpage that introduces my student journey.</p></article>
+      <article><span>📝</span><h3>Class Activities</h3><p>School outputs and activities that help me practice my skills.</p></article>
+      <article><span>💡</span><h3>Practice Tasks</h3><p>Small learning tasks that help me develop new abilities.</p></article>
+    </div>
+  </section>
+
+  <section id="r-features" class="page-section section soft beige-soft" hidden>
+    <p class="eyebrow">ABOUT THIS WEBSITE</p>
+    <h2>Features <em>&amp; Works</em></h2>
+    <div class="three">
+      <article><span>📱</span><h3>Responsive Layout</h3><p>Designed to adapt to mobile phones and larger screens.</p></article>
+      <article><span>🤎</span><h3>Beige Theme</h3><p>A simple, calm, and timeless visual style.</p></article>
+      <article><span>✨</span><h3>Animations</h3><p>Gentle photo movement and card hover effects.</p></article>
+      <article><span>🧭</span><h3>Easy Navigation</h3><p>Each menu item opens one section at a time.</p></article>
+      <article><span>🔎</span><h3>Search Bar</h3><p>The homepage search helps visitors find each portfolio.</p></article>
+      <article><span>🖼️</span><h3>Student Photos</h3><p>Personal photos appear on the homepage and portfolio page.</p></article>
+    </div>
+  </section>
+
+  <section id="r-education" class="page-section section" hidden>
+    <p class="eyebrow">04 — MY JOURNEY</p>
+    <h2>My <em>Education</em></h2>
+    <div class="about-card">
+      <h3>University of Eastern Pangasinan</h3>
+      <p>BSIT — First-Year Student</p>
+      <p>Bachelor of Science in Information Technology (BSIT).</p>
+    </div>
+  </section>
+
+  <section id="r-contact" class="page-section contact beige-contact" hidden>
+    <p class="eyebrow">05 — SAY HELLO</p>
+    <h2>Let's keep in <em>touch.</em></h2>
+    <p>Feel free to contact me through any of these links.</p>
+    <div class="contact-links">
+      <a href="mailto:paulinoryzalyn31@gmail.com">✉ Email Ryza</a>
+      <a href="tel:09245579458">📱 09245579458</a>
+      <a href="https://www.facebook.com/profile.php?id=61580148531505" target="_blank" rel="noopener noreferrer">📘 Facebook Profile</a>
+      <a href="https://www.facebook.com/sangsang102122" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+    </div>
+    <p>paulinoryzalyn31@gmail.com</p>
+    <button class="beige-btn" onclick="showSection('ryza','r-home')">BACK TO HOME ↑</button>
+  </section>
+
+  <footer>RYZA LYN PAULINO · <a href="#" onclick="showHome();return false;">Return to all portfolios</a></footer>
+</div>
+
+<!-- JUDELYN PORTFOLIO -->
+<div id="judelyn" class="portfolio judelyn" hidden>
+  <nav class="jude-nav">
+    <a class="back" href="#" onclick="showHome();return false;">✦ ALL PORTFOLIOS</a>
+    <div class="navlinks">
+      <a href="#" onclick="showSection('judelyn','j-home',this);return false;">Home</a>
+      <a href="#" onclick="showSection('judelyn','j-about',this);return false;">About</a>
+      <a href="#" onclick="showSection('judelyn','j-skills',this);return false;">Skills</a>
+      <a href="#" onclick="showSection('judelyn','j-work',this);return false;">Projects</a>
+      <a href="#" onclick="showSection('judelyn','j-features',this);return false;">Features & Works</a>
+      <a href="#" onclick="showSection('judelyn','j-education',this);return false;">Education</a>
+      <a href="#" onclick="showSection('judelyn','j-contact',this);return false;">Contact</a>
+    </div>
+  </nav>
+
+  <section id="j-home" class="page-section hero jude-hero">
+    <div>
+      <p class="jude-pill">HEY THERE! I'M JUDELYN ✨</p>
+      <h1>Dream big.<br><em>Create more.</em></h1>
+      <p>A student with a curious mind, creative energy, and a growing passion for learning new things.</p>
+      <button class="jude-btn" onclick="showSection('judelyn','j-work')">Explore My Work ↗</button>
+      <p class="note">A little creativity can make a big difference.</p>
+    </div>
+    <div class="jude-photo">
+      <img src="jude.JPG" alt="Judelyn's portrait">
+      
+    </div>
+  </section>
+
+  <section id="j-about" class="page-section section" hidden>
+    <p class="eyebrow">01 / ABOUT ME</p>
+    <h2>Hi, it's <em>Judelyn!</em></h2>
+    <div class="about-card">
+      <p>I'm Judelyn R. Sabado, a student exploring new knowledge, building skills, and discovering what I can create. I enjoy learning from experiences and challenging myself to improve little by little.</p>
+    </div>
+    <div class="three">
+      <article><span>🌟</span><h3>My Goal</h3><p>To keep learning and improving.</p></article>
+      <article><span>💡</span><h3>My Mindset</h3><p>Stay curious and open to ideas.</p></article>
+      <article><span>🎨</span><h3>My Style</h3><p>Colorful, creative, and positive.</p></article>
+    </div>
+  </section>
+
+  <section id="j-skills" class="page-section section soft jude-soft" hidden>
+    <p class="eyebrow">02 / MY TOOLBOX</p>
+    <h2>Things I'm <em>learning.</em></h2>
+    <div class="three">
+      <article><span>💡</span><h3>Creative Thinking</h3><p>Turning simple ideas into something interesting.</p></article>
+      <article><span>💻</span><h3>Technology</h3><p>Learning digital tools and basic IT skills.</p></article>
+      <article><span>🤝</span><h3>Teamwork</h3><p>Learning with others and sharing ideas.</p></article>
+      <article><span>📚</span><h3>Learning</h3><p>Practicing and discovering new information.</p></article>
+      <article><span>🗣️</span><h3>Communication</h3><p>Expressing ideas and listening to others.</p></article>
+      <article><span>🎯</span><h3>Problem Solving</h3><p>Trying different approaches to complete tasks.</p></article>
+    </div>
+  </section>
+
+  <section id="j-work" class="page-section section" hidden>
+    <p class="eyebrow">03 / MY JOURNEY</p>
+    <h2>Projects & <em>Works</em></h2>
+    <div class="three">
+      <article><span>🖥️</span><h3>Personal Portfolio</h3><p>A website that introduces me and my student journey.</p></article>
+      <article><span>✏️</span><h3>School Activities</h3><p>Academic tasks and class projects that support learning.</p></article>
+      <article><span>✨</span><h3>Practice Projects</h3><p>Small projects to try new skills and creative ideas.</p></article>
+    </div>
+  </section>
+
+  <section id="j-features" class="page-section section soft jude-soft" hidden>
+    <p class="eyebrow">ABOUT THIS WEBSITE</p>
+    <h2>Features <em>&amp; Works</em></h2>
+    <div class="three">
+      <article><span>📱</span><h3>Responsive Design</h3><p>Adapts to phone screens and larger devices.</p></article>
+      <article><span>🎨</span><h3>Pastel Theme</h3><p>Lavender, mint, and pink colors create a cheerful style.</p></article>
+      <article><span>✨</span><h3>Photo Animations</h3><p>Photos float gently and cards react when hovered.</p></article>
+      <article><span>🧭</span><h3>Section Navigation</h3><p>One selected section is displayed at a time.</p></article>
+      <article><span>🔎</span><h3>Search Bar</h3><p>Visitors can search for a student on the homepage.</p></article>
+      <article><span>🖼️</span><h3>Photo Gallery</h3><p>The homepage features all three student photos.</p></article>
+    </div>
+  </section>
+
+  <section id="j-education" class="page-section section" hidden>
+    <p class="eyebrow">04 / MY JOURNEY</p>
+    <h2>My <em>Education</em></h2>
+    <div class="about-card">
+      <h3>University of Eastern Pangasinan</h3>
+      <p>Bachelor of Science in Information Technology (BSIT).</p>
+     <p>First-Year College Student </p>
+    </div>
+  </section>
+
+  <section id="j-contact" class="page-section contact jude-contact" hidden>
+    <p class="jude-pill">THANKS FOR STOPPING BY 💖</p>
+    <h2>Keep being <em>creative!</em></h2>
+    <p>Feel free to contact me through any of these links.</p>
+    <div class="contact-links">
+      <a href="mailto:judelynsabado28@gmail.com">✉ Email Judelyn</a>
+      <a href="tel:09387249198">📱 09387249198</a>
+      <a href="https://www.facebook.com/jaiii.vrgr" target="_blank" rel="noopener noreferrer">📘 Facebook Profile</a>
+      <a href="https://www.facebook.com/share/1Evpbr3atN/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+    </div>
+    <p>judelynsabado28@gmail.com</p>
+    <button class="jude-btn" onclick="showSection('judelyn','j-home')">BACK TO HOME ↑</button>
+  </section>
+
+  <footer>✦ JUDELYN'S PORTFOLIO · <a href="#" onclick="showHome();return false;">Choose another portfolio</a></footer>
+</div>
+
+<script>
+function showHome() {
+  document.querySelectorAll(".portfolio").forEach(function(page) {
+    page.hidden = true;
+  });
+
+  document.getElementById("home").hidden = false;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function openPortfolio(id) {
+  document.getElementById("home").hidden = true;
+
+  document.querySelectorAll(".portfolio").forEach(function(page) {
+    page.hidden = true;
+  });
+
+  var page = document.getElementById(id);
+
+  if (page) {
+    page.hidden = false;
+
+    var firstSection = page.querySelector(".page-section");
+
+    page.querySelectorAll(".page-section").forEach(function(section) {
+      section.hidden = section !== firstSection;
+    });
+
+    page.querySelectorAll(".navlinks a").forEach(function(link, index) {
+      link.classList.toggle("active", index === 0);
+    });
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showSection(portfolioId, sectionId, linkElement) {
+  var page = document.getElementById(portfolioId);
+  if (!page) return;
+
+  page.querySelectorAll(".page-section").forEach(function(section) {
+    section.hidden = section.id !== sectionId;
+  });
+
+  page.querySelectorAll(".navlinks a").forEach(function(link) {
+    link.classList.remove("active");
+  });
+
+  if (linkElement) {
+    linkElement.classList.add("active");
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function filterPortfolios() {
+  var input = document.getElementById("portfolioSearch");
+  var query = input.value.toLowerCase().trim();
+  var cards = document.querySelectorAll(".choice");
+  var shown = 0;
+
+  cards.forEach(function(card) {
+    var text = (
+      card.innerText + " " + card.getAttribute("data-search")
+    ).toLowerCase();
+
+    var match = text.includes(query);
+    card.hidden = !match;
+
+    if (match) shown++;
+  });
+
+  document.getElementById("searchMessage").textContent =
+    query && shown === 0
+      ? "No portfolio found. Try Alwina, Ryza, or Judelyn."
+      : query
+      ? shown + " portfolio(s) found."
+      : "";
+}
+</script>
+</body>
+</html>
